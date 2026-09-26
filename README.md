@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+# Azhaanul Haque Farooqui — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A recruiter-first React + TypeScript portfolio built with Vite. The Personal Systems Monograph direction uses an editorial layout and an interactive, factual system diagram.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Validation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm run lint
+npm run typecheck
+npm run build
+npm run preview
 ```
+
+## Structure
+
+- `src/data/portfolio.ts`: verified public project content, education, navigation and architecture lanes.
+- `src/pages/`: homepage, two case studies and the not-found page.
+- `src/components/`: route shell, metadata and purpose-built architecture plate.
+- `src/styles/portfolio.css`: visual tokens, layout, responsive and accessibility styles.
+
+Project pages are available at `/projects/venue-vendors` and `/projects/australian-climate-data-explorer`. Job Application Tracker is an in-progress homepage entry only.
+
+## Deployment
+
+Deploy the `dist/` directory produced by `npm run build`. Configure the static host to serve `index.html` for non-file requests so direct case-study URLs and refreshes work with browser-history routing. The site assumes deployment at the domain root. Unknown routes render the client-side not-found page; configure host-level handling separately if an HTTP 404 status is required.
+
+Route titles and descriptions are set in React. Rich previews on crawlers that do not execute JavaScript would require prerendering or server rendering; no deployment domain or social image has been invented.
+
+## Content boundaries
+
+Only verified public content belongs in `src/` and `public/`. Internal planning files are not imported. Optional email, résumé, repository, demo and screenshot UI is omitted until those assets are supplied and verified. Venue Vendors has no live-demo action because its previous Render deployment is currently unavailable.

@@ -1,16 +1,19 @@
-import Navbar from './components/Navbar'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SiteLayout from "./components/SiteLayout";
+import HomePage from "./pages/HomePage";
+import ProjectPage from "./pages/ProjectPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Navbar />
-
-      <main>
-        <h1>Azhaanul Haque Farooqui</h1>
-        <p>Software Engineering student at RMIT University.</p>
-      </main>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route element={<SiteLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="projects/:slug" element={<ProjectPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
