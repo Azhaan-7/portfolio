@@ -30,8 +30,36 @@ export default function ProjectPage() {
               {project.title}
               <span className="heading-dot">.</span>
             </h1>
+
             <p className="case-summary">{project.summary}</p>
+
+            {(project.liveUrl || project.repositoryUrl) && (
+              <div className="case-actions">
+                {project.liveUrl && (
+                  <a
+                    className="text-link"
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Live demo <Arrow external />
+                  </a>
+                )}
+
+                {project.repositoryUrl && (
+                  <a
+                    className="text-link"
+                    href={project.repositoryUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Repository<Arrow external />
+                  </a>
+                )}
+              </div>
+            )}
           </div>
+
           <dl className="case-facts">
             <div>
               <dt>Status</dt>

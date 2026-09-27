@@ -28,6 +28,8 @@ export interface Project {
   summary: string;
   technologies: string[];
   detail: boolean;
+  liveUrl?: string;
+  repositoryUrl?: string;
   sections: CaseSection[];
 }
 
@@ -164,6 +166,8 @@ export const projects: Project[] = [
     status: "Completed",
     teamSize: 3,
     detail: true,
+    liveUrl: "https://australian-climate-data-explorer.onrender.com",
+    repositoryUrl: "https://github.com/Azhaan-7/Australian-Climate-Data-Explorer",
     summary:
       "A web application for exploring Australian Bureau of Meteorology climate data through station filters, relational queries, similarity analysis and CSV exports.",
     technologies: ["Java", "Javalin", "SQLite", "JDBC", "SQL", "HTML", "CSS"],
