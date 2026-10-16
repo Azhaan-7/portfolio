@@ -12,6 +12,21 @@ dist
 dist-ssr
 *.local
 
+# Secrets and generated verification/build artifacts
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+.verification/
+.wrangler/
+
+# Keep the public PDF, but do not publish the editable résumé
+public/*.docx
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -24,7 +24,7 @@
 
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
 }
 
 html {
@@ -89,6 +89,7 @@ h1,
 h2,
 h3 {
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 p {
@@ -126,6 +127,14 @@ h3 {
   min-width: 0;
 }
 
+.case-header > *,
+.case-reading-layout > *,
+.case-facts dd {
+  min-width: 0;
+}
+
+p, a, dd { overflow-wrap: anywhere; }
+
 .wrap {
   width: min(1280px, calc(100% - 112px));
   margin-inline: auto;
@@ -137,8 +146,7 @@ h3 {
   flex-shrink: 0;
 }
 
-.heading-dot,
-.wordmark-dot {
+.heading-dot {
   color: var(--green);
 }
 
@@ -160,17 +168,10 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   min-height: 100px;
   border-bottom: 1px solid var(--line);
   gap: 2rem;
-}
-
-.wordmark {
-  font-size: 1.65rem;
-  font-weight: 650;
-  letter-spacing: -0.035em;
-  text-decoration: none;
 }
 
 .site-nav {
@@ -194,17 +195,13 @@ h3 {
   text-decoration: underline;
 }
 
-.site-nav .nav-github {
-  margin-left: 22px;
-}
-
 .menu-toggle {
   display: none;
 }
 
 .hero {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(36px, 5vw, 80px);
   padding-block: 76px 80px;
   align-items: center;
@@ -215,10 +212,6 @@ h3 {
   line-height: 1.07;
 }
 
-.name-stop {
-  color: var(--green);
-}
-
 .hero-role {
   font-size: clamp(1.125rem, 1.7vw, 1.4rem);
   line-height: 1.5;
@@ -227,14 +220,15 @@ h3 {
 
 .hero-description {
   margin-top: 19px;
-  max-width: 33ch;
+  max-width: 70ch;
   color: var(--muted);
 }
 
 .hero-actions {
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 15px;
   margin-top: 30px;
 }
@@ -289,30 +283,20 @@ h3 {
   background: var(--green);
 }
 
-.hero-interests {
-  font-size: 0.75rem;
-  color: var(--muted);
-  margin-top: 8px;
-  line-height: 1.65;
-}
-
-.hero-figure {
-  min-width: 0;
-}
-
-.figure-note {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--muted);
-  font-size: 0.6875rem;
-  margin-top: 14px;
-}
-
-.figure-note span:first-child {
-  color: var(--green);
-  font-weight: 600;
-}
+/* Planned work is visually separate from implemented project evidence. */
+.planned-section { background: #edf0e9; border-block: 1px solid var(--line); }
+.planned-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+.planned-list h3 { font-size: 1.5rem; margin-block: 10px 16px; }
+.planned-list article > p { color: var(--muted); max-width: 70ch; }
+.planned-stack { margin-top: 20px; font-size: 0.875rem; }
+.contact-links { display: flex; flex-wrap: wrap; gap: 8px 24px; min-width: 0; }
+.contact-links a { overflow-wrap: anywhere; }
+.hero-copy { max-width: 850px; }
+.hero-description { font-size: 1rem; }
+.breadcrumb { flex-wrap: wrap; }
+.plate-controls { row-gap: 6px; }
+.system-connection { min-height: 52px; height: auto; padding-block: 12px; }
+.system-node, .persistence-node, .plate-controls button { overflow-wrap: anywhere; }
 
 /* The two application lanes share a single persistence region. */
 .architecture {
@@ -1185,23 +1169,6 @@ h3 {
   font-family: var(--mono);
 }
 
-@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
-  .hero-figure {
-    animation: settle-in 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  @keyframes settle-in {
-    from {
-      opacity: 0.7;
-      transform: translateY(8px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
 
 @media (max-width: 1100px) {
   .wrap {
@@ -1255,11 +1222,6 @@ h3 {
     padding-inline: 8px;
   }
 
-  .figure-note {
-    flex-direction: column;
-    gap: 1px;
-  }
-
   .project-entry {
     grid-template-columns: 30px 1fr 1fr;
     gap: 18px;
@@ -1272,6 +1234,7 @@ h3 {
 }
 
 @media (max-width: 800px) {
+  .planned-list { grid-template-columns: 1fr; gap: 36px; }
   .hero {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -1281,16 +1244,14 @@ h3 {
     font-size: clamp(2.75rem, 7vw, 4rem);
   }
 
-  .hero-copy {
-    max-width: 600px;
-  }
+  .hero-copy { max-width: 850px; }
 
   .hero-role br {
     display: none;
   }
 
   .hero-description {
-    max-width: 46ch;
+    max-width: 70ch;
   }
 
   .hero-actions {
@@ -1302,11 +1263,6 @@ h3 {
 
   .hero-location {
     margin-top: 25px;
-  }
-
-  .hero-figure {
-    width: 100%;
-    max-width: 640px;
   }
 
   .architecture-body {
@@ -1321,16 +1277,8 @@ h3 {
     min-height: 58px;
   }
 
-  .figure-note {
-    flex-direction: row;
-  }
-
   .site-nav {
     gap: 20px;
-  }
-
-  .site-nav .nav-github {
-    margin-left: 0;
   }
 
   .section,
@@ -1454,10 +1402,6 @@ h3 {
     gap: 0;
   }
 
-  .wordmark {
-    font-size: 1.5rem;
-  }
-
   .menu-toggle {
     display: flex;
     align-items: center;
@@ -1512,10 +1456,6 @@ h3 {
     align-items: flex-start;
     gap: 9px;
     margin-top: 24px;
-  }
-
-  .hero-interests {
-    line-height: 1.7;
   }
 
   .architecture-body {
@@ -1581,11 +1521,6 @@ h3 {
 
   .plate-annotation {
     min-height: 100px;
-  }
-
-  .figure-note {
-    font-size: 0.625rem;
-    gap: 8px;
   }
 
   .section-heading {

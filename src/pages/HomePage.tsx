@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import ArchitecturePlate from "../components/ArchitecturePlate";
 import PageMeta from "../components/PageMeta";
 import { Arrow } from "../components/SiteLayout";
-import { practice, projects, site } from "../data/portfolio";
+import { plannedProjects, practice, projects, site } from "../data/portfolio";
 
 export default function HomePage() {
   return (
@@ -14,42 +13,28 @@ export default function HomePage() {
       <section className="hero wrap" aria-labelledby="intro-title">
         <div className="hero-copy">
           <h1 id="intro-title">
-            Azhaanul
-            <br />
-            Haque Farooqui<span className="name-stop">.</span>
+            Hi, I'm Azhaanul.
           </h1>
           <p className="hero-role">
-            Software Engineering student <br />
-            at RMIT University.
+            I'm studying Software Engineering at RMIT University in Melbourne.
           </p>
           <p className="hero-description">
-            Building across the system: interfaces, APIs and the data behind
-            them.
+            I enjoy building applications and understanding how their interfaces,
+            backend services and databases fit together.
           </p>
+          <p className="hero-description">I'm particularly interested in full-stack and backend development, with growing interests in AI integration and cloud/platform engineering. I'm seeking software engineering internship opportunities where I can contribute to real products and continue learning.</p>
           <div className="hero-actions">
-            <Link className="button-primary" to="/projects/venue-vendors">
-              Explore Venue Vendors <Arrow />
+            <Link className="button-primary" to="/#work">
+              Explore projects <Arrow />
             </Link>
-            <a className="text-link" href="#work">
-              View featured projects <Arrow />
+            <a className="text-link" href={site.resume} target="_blank" rel="noopener noreferrer" aria-label="View résumé (PDF, opens in a new tab)">
+              View résumé <Arrow external />
             </a>
           </div>
           <div className="hero-location">
             <span className="location-mark" aria-hidden="true" />
             {site.location}
           </div>
-          <p className="hero-interests">
-            Full-stack & backend development
-            <br />
-            Growing toward cloud & platform engineering
-          </p>
-        </div>
-        <div className="hero-figure">
-          <ArchitecturePlate />
-          <p className="figure-note">
-            <span>Featured system</span>
-            <span>Completed university team project</span>
-          </p>
         </div>
       </section>
       <section
@@ -92,7 +77,7 @@ export default function HomePage() {
                   className={`status-mark ${project.status === "In progress" ? "pending" : ""}`}
                   aria-hidden="true"
                 />
-                {project.status}
+                {project.status === "Completed" ? "Completed university team project" : project.status}
                 {project.teamSize && <span> · Team of {project.teamSize}</span>}
               </p>
             </div>
@@ -116,6 +101,19 @@ export default function HomePage() {
             </div>
           </article>
         ))}
+      </section>
+      <section className="planned-section" aria-labelledby="planned-title">
+        <div className="wrap section">
+          <div className="section-heading"><h2 id="planned-title">Projects in design</h2><p>Future directions; proposed capabilities have not shipped.</p></div>
+          <div className="planned-list">
+            {plannedProjects.map((project) => <article key={project.title}>
+              <p className="project-status">{project.status}</p>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+              <p className="planned-stack">{project.stack}</p>
+            </article>)}
+          </div>
+        </div>
       </section>
       <section
         id="engineering"
@@ -176,9 +174,9 @@ export default function HomePage() {
             built with other people.
           </p>
           <p>
-            My projects span venue hiring, an ongoing community meal marketplace and
-            climate-data exploration. They bring frontend development together with
-            backend logic, relational databases, automated testing and team development.
+            I like tracing a feature from the screen to the data behind it. University
+            team projects have given me opportunities to discuss design decisions,
+            connect different parts of an application and learn alongside others.
           </p>
           <div className="education-record">
             <span className="education-institution">{site.university}</span>
@@ -188,20 +186,23 @@ export default function HomePage() {
         </div>
       </section>
       <section
-        id="explore"
+        id="contact"
         tabIndex={-1}
         className="contact-section wrap"
-        aria-labelledby="explore-title"
+        aria-labelledby="contact-title"
       >
         <div>
-          <h2 id="explore-title">
-            Keep exploring<span className="heading-dot">.</span>
+          <h2 id="contact-title">
+            Contact
           </h2>
-          <p>Find my developer profile and public work on GitHub.</p>
+          <p>Get in touch about software engineering internship opportunities.</p>
         </div>
-        <a className="contact-link" href={site.github}>
-          Azhaan-7 <Arrow external />
-        </a>
+        <div className="contact-links">
+          <a className="text-link" href={`mailto:${site.email}`}>{site.email}<Arrow /></a>
+          <a className="text-link" href={site.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub <Arrow external /></a>
+          <a className="text-link" href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn <Arrow external /></a>
+          <a className="text-link" href={site.resume} target="_blank" rel="noopener noreferrer" aria-label="Résumé (PDF, opens in a new tab)">Résumé <Arrow external /></a>
+        </div>
       </section>
     </>
   );

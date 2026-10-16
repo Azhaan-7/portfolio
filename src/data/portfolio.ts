@@ -2,14 +2,33 @@ export const site = {
   name: "Azhaanul Haque Farooqui",
   location: "Melbourne, Australia",
   github: "https://github.com/Azhaan-7",
+  email: "azhan.farooqui05@gmail.com",
+  linkedin: "https://www.linkedin.com/in/azhaanul-haque/",
+  resume: "/resume.pdf",
   degree: "Bachelor of Software Engineering (Professional)",
   university: "RMIT University",
 };
 
 export const navigation = [
-  { label: "Work", href: "/#work" },
-  { label: "Engineering", href: "/#engineering" },
+  { label: "Projects", href: "/#work" },
   { label: "About", href: "/#about" },
+  { label: "Résumé", href: site.resume, external: true },
+  { label: "Contact", href: "/#contact" },
+];
+
+export const plannedProjects = [
+  {
+    title: "AI-Assisted Career Platform",
+    status: "In design",
+    summary: "Planning evidence-backed job analysis and résumé tailoring for students. The design covers structured job requirements, matching against confirmed experience, explainable terminology analysis and user-reviewed résumé suggestions.",
+    stack: "Intended stack: Next.js / React / TypeScript · FastAPI · Supabase PostgreSQL / Auth / Storage",
+  },
+  {
+    title: "Launchpad",
+    status: "Planned",
+    summary: "A planned GitHub-to-cloud deployment tool. The MVP would take a supported repository through test execution, Docker build, Azure Container Apps deployment, status reporting and a deployed URL. These deployment capabilities have not shipped.",
+    stack: "Intended stack: Go · React / TypeScript · Docker · Azure Container Apps",
+  },
 ];
 
 export interface CaseSection {

@@ -40,7 +40,8 @@ export default function ProjectPage() {
                     className="text-link"
                     href={project.liveUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="Live demo (opens in a new tab)"
                   >
                     Live demo <Arrow external />
                   </a>
@@ -51,7 +52,8 @@ export default function ProjectPage() {
                     className="text-link"
                     href={project.repositoryUrl}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    aria-label="Repository (opens in a new tab)"
                   >
                     Repository<Arrow external />
                   </a>

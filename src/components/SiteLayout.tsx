@@ -29,14 +29,6 @@ function Navigation() {
         }
       }}
     >
-      <Link
-        to="/"
-        className="wordmark"
-        aria-label={`${site.name} — home`}
-        onClick={() => setOpen(false)}
-      >
-        Azhaan<span className="wordmark-dot">.</span>
-      </Link>
       <button
         ref={toggle}
         className="menu-toggle"
@@ -66,13 +58,26 @@ function Navigation() {
         aria-label="Main navigation"
       >
         {navigation.map((item) => (
-          <Link key={item.href} to={item.href} onClick={() => setOpen(false)}>
-            {item.label}
-          </Link>
+          item.external ? (
+            <a
+              key={item.href}
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.label} (PDF, opens in a new tab)`}
+              onClick={() => {
+                setOpen(false);
+                if (open) toggle.current?.focus();
+              }}
+            >
+              {item.label}
+            </a>
+          ) : (
+            <Link key={item.href} to={item.href} onClick={() => setOpen(false)}>
+              {item.label}
+            </Link>
+          )
         ))}
-        <a className="nav-github" href={site.github}>
-          GitHub <Arrow external />
-        </a>
       </nav>
     </header>
   );

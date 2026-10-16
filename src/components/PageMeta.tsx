@@ -12,13 +12,9 @@ export default function PageMeta({
 }) {
   useEffect(() => {
     document.title = `${title} — ${site.name}`;
-  }, [title]);
-  return (
-    <>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={`${title} — ${site.name}`} />
-      <meta property="og:description" content={description} />
-      {notFound && <meta name="robots" content="noindex" />}
-    </>
-  );
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", `${title} — ${site.name}`);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", description);
+  }, [title, description]);
+  return notFound ? <meta name="robots" content="noindex" /> : null;
 }
