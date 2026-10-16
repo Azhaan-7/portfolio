@@ -24,7 +24,7 @@ test-results/
 .verification/
 .wrangler/
 
-# Keep the public PDF, but do not publish the editable résumé
+# Keep the public PDF, but do not publish editable documents
 public/*.docx
 
 # Editor directories and files
@@ -37,3 +37,23 @@ public/*.docx
 *.njsproj
 *.sln
 *.sw?
+
+# Local agent tooling and handover artifacts
+.agents/
+.codex/
+.impeccable/
+skills-lock.json
+
+# Local credentials and tool caches
+.aws/
+.dev.vars
+.dev.vars.*
+*.pem
+*.key
+*.p12
+*.pfx
+.cache/
+.vite/
+
+# Private editable documents
+/docs/*.docx

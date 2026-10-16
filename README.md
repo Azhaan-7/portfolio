@@ -1,45 +1,71 @@
 # Azhaanul Haque Farooqui — Portfolio
 
-React, TypeScript and Vite portfolio for software engineering internships. The existing editorial layout and interactive Venue Vendors architecture case study are preserved.
+A personal software engineering portfolio presenting university projects, technical case studies, current work, education and contact information.
 
-## Development and validation
+**Live site:** [portfolio-x1v.pages.dev](https://portfolio-x1v.pages.dev)
 
-Use Node.js 24 (locally verified: 24.11.1).
+## Features
+
+- Project summaries with completion status and technology lists.
+- Detailed case studies for Venue Vendors and Australian Climate Data Explorer.
+- An interactive Venue Vendors architecture diagram with keyboard-operable controls and a text description.
+- Responsive navigation, a skip link, route focus management and reduced-motion styles.
+- Downloadable résumé and links to GitHub, LinkedIn and email.
+- Page-specific titles and descriptions, plus a client-side not-found page.
+
+## Technology stack
+
+React 19, TypeScript 6, Vite 8, React Router 7 and Tailwind CSS 4, with custom CSS for the portfolio interface. ESLint provides static linting.
+
+This repository contains the portfolio frontend. The technologies described in its case studies belong to those separate projects.
+
+## Local setup
+
+Requirements: Node.js 24 and npm.
 
 ```sh
 npm ci
 npm run dev
-npm run lint
-npm run typecheck
-npm run build
-npm run preview
 ```
 
-There is no automated test suite or test script in this repository. Venue Vendors testing claims refer to that university project.
+Vite prints the local development URL in the terminal. No backend service or environment variables are required.
 
-## Structure and content
+## Available commands
 
-- src/data/portfolio.ts: contact destinations, navigation, project evidence, proposed projects and architecture data.
-- src/pages/: homepage, case studies and client-side not-found page.
-- src/components/: accessible navigation, route focus/scroll handling, metadata and interactive architecture plate.
-- src/styles/portfolio.css: existing palette, typography, responsive layout and accessibility styles.
-- public/resume.pdf: supplied PDF served at /resume.pdf; all résumé actions open a new tab.
-- docs/Azhaanul_Haque_Farooqui_Resume.docx: editable source document, excluded from public assets.
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the development server. |
+| `npm run lint` | Run ESLint. |
+| `npm run typecheck` | Check the application and Vite configuration with TypeScript. |
+| `npm run build` | Run TypeScript checks and produce the static site in `dist/`. |
+| `npm run preview` | Serve the production build locally after building. |
 
-Featured order: Venue Vendors, Australian Climate Data Explorer, then CommunityEats (in progress). Job Application Tracker is absent. No Minecraft placeholder exists. AI-Assisted Career Platform and Launchpad are separately labelled design-stage/planned work; intended capabilities have not shipped.
+There is currently no automated test suite for the portfolio. Testing discussed in the project case studies refers to those projects.
 
-Case studies: /projects/venue-vendors and /projects/australian-climate-data-explorer. Venue Vendors retains its simplified authentication, limited frontend test coverage and unavailable historical deployment. CommunityEats has no case-study route; its summary reflects existing portfolio evidence, with no new claims inferred from unavailable source. User instructions supersede older design/planning notes.
+## Repository structure
 
-## Cloudflare Pages preparation
+- `src/data/portfolio.ts` — typed project content, navigation, contact links and architecture data.
+- `src/pages/` — homepage, project case studies and not-found page.
+- `src/components/` — shared navigation, route handling, metadata and architecture diagram.
+- `src/styles/portfolio.css` — layout, typography, responsive rules and accessibility styles.
+- `public/resume.pdf` — résumé served at `/resume.pdf`.
+- `index.html` — HTML entry point and static metadata.
 
-- Build command: npm run build
-- Output directory: dist
-- Root directory: this repository root
-- Build environment: Node.js 24
-- Deploy at the domain root. No backend or runtime secrets are required.
+The case-study routes are `/projects/venue-vendors` and `/projects/australian-climate-data-explorer`.
 
-[Cloudflare Pages SPA fallback](https://developers.cloudflare.com/pages/configuration/serving-pages/) serves index.html when there is no top-level 404.html. Keep that default so direct case-study URLs and refreshes work. Unknown routes render a client-side not-found page, generally with HTTP 200; genuine HTTP 404 responses require host-level work. No deployment has been performed.
+## Deployment
 
-index.html includes static title, description and Open Graph fallbacks. React updates title/description/OG text per route. Crawlers that do not execute JavaScript see generic portfolio metadata, including on case-study URLs; route-specific previews require prerendering. Canonical, og:url and og:image are intentionally absent because no production domain or social image was supplied. Add verified absolute URLs when the deployment domain is chosen; never derive canonical URLs from preview hosts.
+The site is hosted on Cloudflare Pages at [portfolio-x1v.pages.dev](https://portfolio-x1v.pages.dev), with automatic deployments from `main`.
 
-External contact links use supplied destinations. Mail delivery and third-party availability cannot be guaranteed locally. Existing Climate Explorer demo/repository URLs must be checked before publishing; never substitute guessed URLs. Internal planning documents and the editable résumé are not bundled.
+| Setting | Value |
+| --- | --- |
+| Project root | Repository root |
+| Build command | `npm run build` |
+| Build output | `dist` |
+| Node.js version | 24 |
+
+The build produces a static single-page application with no runtime secrets. Files in `public/` are copied into the build output and are publicly accessible.
+
+React Router uses browser history. Cloudflare Pages' [default single-page application fallback](https://developers.cloudflare.com/pages/configuration/serving-pages/) serves `index.html` for direct case-study requests when there is no top-level `404.html`. Unknown routes display the application's not-found page and generally return HTTP 200.
+
+Titles, descriptions and Open Graph text update in the browser. Crawlers that do not execute JavaScript receive the static metadata from `index.html`; route-specific social previews would require prerendering. The site currently has no canonical URL, `og:url` or social preview image configured.
