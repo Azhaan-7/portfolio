@@ -7,7 +7,8 @@ A personal software engineering portfolio presenting university projects, techni
 ## Features
 
 - Project summaries with completion status and technology lists.
-- Detailed case studies for Venue Vendors and Australian Climate Data Explorer.
+- Detailed case studies for Venue Vendors, Australian Climate Data Explorer and CommunityEats.
+- In-progress career platform foundations and authentication, clearly separated from planned AI capabilities.
 - An interactive Venue Vendors architecture diagram with keyboard-operable controls and a text description.
 - Responsive navigation, a skip link, route focus management and reduced-motion styles.
 - Downloadable résumé and links to GitHub, LinkedIn and email.
@@ -51,7 +52,9 @@ There is currently no automated test suite for the portfolio. Testing discussed 
 - `public/resume.pdf` — résumé served at `/resume.pdf`.
 - `index.html` — HTML entry point and static metadata.
 
-The case-study routes are `/projects/venue-vendors` and `/projects/australian-climate-data-explorer`.
+The case-study routes are `/projects/venue-vendors`, `/projects/australian-climate-data-explorer` and `/projects/community-eats`.
+
+CommunityEats contribution details are supplied by the portfolio owner. Its RMIT repository is access-restricted and must remain read-only. The portfolio does not expose a repository or deployment link for that project.
 
 ## Deployment
 
