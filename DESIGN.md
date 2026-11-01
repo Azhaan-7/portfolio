@@ -1,15 +1,18 @@
 ---
 name: Azhaanul Haque Farooqui Portfolio
-description: Refined Light — a warm paper and forest green engineering portfolio.
+description: Restrained Green Hybrid — forest green introductions and muted reading surfaces.
 colors:
-  paper: "#f5f2e9"
-  surface: "#eae7dc"
-  ink: "#222820"
-  muted: "#5e665b"
-  line: "#d4d8ce"
-  green: "#315545"
+  paper: "#d4dace"
+  surface: "#c5cebf"
+  ink: "#202b24"
+  muted: "#465548"
+  line: "#9dae99"
+  green: "#264e40"
   deep: "#1e3b32"
   lime: "#d9ec9c"
+  on-deep: "#edf2e7"
+  muted-on-deep: "#c4d4c9"
+  line-on-deep: "#46564e"
 typography:
   display:
     fontFamily: '"Segoe UI", Helvetica, Arial, sans-serif'
@@ -55,6 +58,13 @@ components:
     padding: "14px 20px"
   button-primary-hover:
     backgroundColor: "{colors.ink}"
+  hero-button-primary:
+    backgroundColor: "{colors.lime}"
+    textColor: "{colors.deep}"
+    rounded: "{rounded.square}"
+    padding: "14px 20px"
+  hero-button-primary-hover:
+    backgroundColor: "{colors.on-deep}"
   text-link:
     textColor: "{colors.ink}"
   architecture-plate:
@@ -67,34 +77,37 @@ components:
 
 ## Overview
 
-**Creative North Star: "Refined Light"**
+**Creative North Star: "Restrained Green Hybrid"**
 
-Warm paper, forest green and clear system typography give the portfolio a calm, readable character. Numbered project rows, conventional navigation and case-study reading layouts keep attention on the engineering work. A dark architecture diagram provides a focused technical contrast within the light pages.
+Deep forest introductions and muted green-grey reading surfaces give the portfolio a clear identity and a restrained reading environment. The homepage transitions once after the hero; case studies transition after their technology line. Numbered project rows, conventional navigation and case-study reading layouts keep attention on the engineering work. The architecture diagram retains its dark forest surface.
 
 The system font stack is an intentional approved choice; no downloaded font dependency is required. This document describes the implemented system in `src/styles/portfolio.css` and its current React components.
 
 **Key Characteristics:**
 
-- Warm neutral pages with restrained green accents.
+- Dark forest introductions with muted green-grey reading areas.
 - Flat sections and ruled project rows.
 - Readable body text and visible metadata.
 - A contrasting, interactive architecture plate.
 
 ## Colors
 
-The palette combines warm neutrals with a muted forest accent; frontmatter values are normative.
+The palette uses the approved Option C colours exactly; frontmatter values are normative. Dark introductions and light reading areas have separate text, action and focus roles.
 
 ### Primary
 
-- **Forest green** (`green`): primary actions, technology lists, link hover and focus outlines.
-- **Deep forest** (`deep`): architecture background and skip-link surface.
-- **Light lime** (`lime`): architecture selection, diagram accents and text selection.
+- **Forest green** (`green`): actions, technology lists, link hover and focus outlines on reading surfaces.
+- **Deep forest** (`deep`): introduction, architecture and skip-link surfaces; browser theme colour.
+- **Light lime** (`lime`): the hero action, dark-surface hover/focus, architecture selection, diagram accents and text selection.
+- **Off-white** (`on-deep`): main text on dark introductions and hero-action hover background.
+- **Pale sage** (`muted-on-deep`): secondary text on dark introductions.
+- **Dark divider** (`line-on-deep`): rules within introductions.
 
 ### Neutral
 
-- **Warm paper** (`paper`): page background.
-- **Warm surface** (`surface`): engineering-practice band and climate workflow panel.
-- **Dark ink** (`ink`): headings, body text and primary-action hover.
+- **Muted green-grey** (`paper`): project listings and long-form reading background.
+- **Secondary sage** (`surface`): engineering-practice band and climate workflow panel.
+- **Dark ink** (`ink`): headings, body text and primary-action hover on reading surfaces.
 - **Muted olive grey** (`muted`): supporting text and metadata.
 - **Pale divider** (`line`): section boundaries, project rules and fact rows.
 
@@ -115,6 +128,8 @@ Desktop project rows use three columns: index (42px), title (1fr), description (
 
 Case studies pair a sticky contents column (240px) with the reading column, narrowing the index to (180px) at (1100px). At (800px), contents become a wrapping row above the article. Architecture lanes stay side by side, sharing aligned node rows and one persistence region. Allow metadata, controls and long text to wrap without horizontal overflow.
 
+The shared header joins one continuous dark intro. Its lower boundary follows the homepage hero or the case-study technology line. A route-aware layout effect observes the intro and navigation sizes to paint this background without changing the existing boxes, margins or content order. The not-found page keeps only the shared header dark.
+
 ## Elevation & Depth
 
 The implementation uses no box shadows. Background changes, thin dividers and the dark architecture surface establish depth. Hover changes color or underline; the primary action transitions its background over (160ms ease). Smooth scrolling and transitions are disabled under reduced-motion preferences.
@@ -129,6 +144,8 @@ Use square corners for actions, rows and workflow surfaces. The architecture pla
 
 Primary links are solid forest rectangles with white text, a thin matching border, an arrow and a minimum height (48px). Hover uses ink. Secondary actions are underlined text links with an arrow and minimum height (44px); hover changes green and thickens the underline.
 
+On the dark hero, the primary action uses lime with deep forest text; hover uses off-white. Dark introductions use lime hover and focus indicators. Keep focus visible in both colour contexts and retain forced-colours borders.
+
 ### Navigation
 
 Desktop navigation is a right-aligned, wrapping text row with no filled active pill. At (600px), a Menu/Close button reveals the wrapping navigation below a divider. Escape closes the menu and returns focus to its toggle. Preserve the skip link and visible keyboard focus outline (2px), offset (5px).
@@ -139,7 +156,7 @@ Use numbered, ruled articles with a title, category, written status, summary, sl
 
 ### Case studies
 
-Use breadcrumbs, a large title and summary, ruled facts, a technology line, contents navigation and restrained reading sections. The climate overview is a flat tonal panel with a three-column workflow that stacks at (800px).
+Use a continuous dark area for breadcrumbs, title, summary, facts and technology line. The technical overview, contents navigation and reading sections use the muted canvas. The climate overview is a flat secondary sage panel with a three-column workflow that stacks at (800px).
 
 ### Architecture plate
 
@@ -149,7 +166,7 @@ Use the deep background, light text, outlined nodes and fine connectors. Two app
 
 ### Do:
 
-- **Do** preserve the warm paper and forest palette across new screens.
+- **Do** preserve the approved forest intro and muted reading palette across new screens.
 - **Do** retain the approved system font stacks and readable metadata.
 - **Do** use flat, ruled layouts and preserve responsive reading order.
 - **Do** provide visible keyboard focus and respect reduced motion.
@@ -160,3 +177,4 @@ Use the deep background, light text, outlined nodes and fine connectors. Two app
 - **Don't** replace numbered project rows with generic elevated cards.
 - **Don't** reduce status, facts or diagram labels to tiny decorative text.
 - **Don't** communicate diagram selection or project status through color alone.
+- **Don't** add alternating dark sections through case-study prose or lighten the approved reading canvas toward white.

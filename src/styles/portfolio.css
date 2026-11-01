@@ -5,14 +5,17 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  --paper: #f5f2e9;
-  --surface: #eae7dc;
-  --ink: #222820;
-  --muted: #5e665b;
-  --line: #d4d8ce;
-  --green: #315545;
+  --paper: #d4dace;
+  --surface: #c5cebf;
+  --ink: #202b24;
+  --muted: #465548;
+  --line: #9dae99;
+  --green: #264e40;
   --deep: #1e3b32;
   --lime: #d9ec9c;
+  --on-deep: #edf2e7;
+  --muted-on-deep: #c4d4c9;
+  --line-on-deep: #46564e;
   --mono: "Cascadia Code", Consolas, monospace;
   color-scheme: light;
 }
@@ -27,6 +30,23 @@ body {
   margin: 0;
   min-width: 0;
   font-size: 1.0625rem;
+  position: relative;
+  isolation: isolate;
+}
+
+/* A single full-width intro surface preserves the existing content geometry. */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--intro-end, 0px);
+  background: var(--deep);
+  z-index: -1;
+}
+
+:is(.site-header, .hero, .breadcrumb, .case-header, .case-stack) :focus-visible,
+.skip-link:focus-visible {
+  outline-color: var(--lime);
 }
 
 html {
@@ -253,6 +273,16 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .button-primary:hover {
   background: var(--ink);
+}
+
+.hero .button-primary {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--deep);
+}
+
+.hero .button-primary:hover {
+  background: var(--on-deep);
 }
 
 .text-link {
@@ -1179,6 +1209,20 @@ p, a, dd { overflow-wrap: anywhere; }
   font-family: var(--mono);
 }
 
+/* Apply intro roles after the base breadcrumb and technology-list colours. */
+.site-header,
+.hero,
+.breadcrumb,
+.case-header,
+.case-stack {
+  --ink: var(--on-deep);
+  --muted: var(--muted-on-deep);
+  --green: var(--lime);
+  --line: var(--line-on-deep);
+  color: var(--ink);
+  background: var(--deep);
+}
+
 
 @media (max-width: 1100px) {
   .wrap {
@@ -1654,6 +1698,13 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 @media (forced-colors: active) {
+  body::before {
+    background: Canvas;
+  }
+
+  .hero .button-primary {
+    border-color: ButtonText;
+  }
 
   .architecture,
   .system-node,

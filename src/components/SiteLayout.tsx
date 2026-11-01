@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { navigation, site } from "../data/portfolio";
 
@@ -113,6 +113,32 @@ function RoutePosition() {
   return null;
 }
 
+function IntroBackground() {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => {
+    const header = document.querySelector(".site-header");
+    const end = document.querySelector(".hero, .case-stack") ?? header;
+    if (!end) return;
+
+    const update = () => {
+      const bottom = end.getBoundingClientRect().bottom + window.scrollY;
+      document.documentElement.style.setProperty("--intro-end", `${bottom}px`);
+    };
+    const observer = new ResizeObserver(update);
+    observer.observe(end);
+    if (header && header !== end) observer.observe(header);
+    window.addEventListener("resize", update);
+    update();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+      document.documentElement.style.removeProperty("--intro-end");
+    };
+  }, [pathname]);
+  return null;
+}
+
 export default function SiteLayout() {
   const location = useLocation();
   return (
@@ -121,6 +147,7 @@ export default function SiteLayout() {
         Skip to content
       </a>
       <Navigation key={location.pathname} />
+      <IntroBackground />
       <RoutePosition />
       <main id="main" tabIndex={-1}>
         <Outlet />
