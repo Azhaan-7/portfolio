@@ -1,18 +1,19 @@
 :root {
-  font-family: "Public Sans", "Segoe UI", Helvetica, Arial, sans-serif;
-  color: #202824;
-  background: #f6f7f4;
+  font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  --paper: #f6f7f4;
-  --ink: #202824;
-  --muted: #59625c;
-  --line: #cfd5ce;
-  --green: #264e40;
+  --paper: #f5f2e9;
+  --surface: #eae7dc;
+  --ink: #222820;
+  --muted: #5e665b;
+  --line: #d4d8ce;
+  --green: #315545;
   --deep: #1e3b32;
   --lime: #d9ec9c;
-  --mono: "Azeret Mono", "Cascadia Code", Consolas, monospace;
+  --mono: "Cascadia Code", Consolas, monospace;
   color-scheme: light;
 }
 
@@ -25,6 +26,7 @@
 body {
   margin: 0;
   min-width: 0;
+  font-size: 1.0625rem;
 }
 
 html {
@@ -106,7 +108,7 @@ ol {
 h1,
 h2 {
   font-weight: 500;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.03em;
 }
 
 h2 {
@@ -169,7 +171,7 @@ p, a, dd { overflow-wrap: anywhere; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  min-height: 100px;
+  min-height: 80px;
   border-bottom: 1px solid var(--line);
   gap: 2rem;
 }
@@ -203,25 +205,25 @@ p, a, dd { overflow-wrap: anywhere; }
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(36px, 5vw, 80px);
-  padding-block: 76px 80px;
+  padding-block: 44px 40px;
   align-items: center;
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 4.15vw, 4rem);
+  font-size: clamp(2.6rem, 4.8vw, 4.5rem);
   line-height: 1.07;
 }
 
 .hero-role {
   font-size: clamp(1.125rem, 1.7vw, 1.4rem);
   line-height: 1.5;
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .hero-description {
-  margin-top: 19px;
+  margin-top: 16px;
   max-width: 70ch;
-  color: var(--muted);
+  color: var(--ink);
 }
 
 .hero-actions {
@@ -230,7 +232,7 @@ p, a, dd { overflow-wrap: anywhere; }
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
-  margin-top: 30px;
+  margin-top: 24px;
 }
 
 .button-primary {
@@ -271,8 +273,8 @@ p, a, dd { overflow-wrap: anywhere; }
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-top: 34px;
-  font-size: 0.8125rem;
+  margin-top: 20px;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
@@ -284,7 +286,10 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 /* Planned work is visually separate from implemented project evidence. */
-.planned-section { background: #edf0e9; border-block: 1px solid var(--line); }
+.planned-section { border-block: 1px solid var(--line); }
+.planned-section .section { padding-block: 40px; border-top: 0; }
+.planned-section .section-heading { margin-bottom: 24px; }
+.planned-section h2 { font-size: 1.75rem; }
 .planned-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
 .planned-list h3 { font-size: 1.5rem; margin-block: 10px 16px; }
 .planned-list article > p { color: var(--muted); max-width: 70ch; }
@@ -292,10 +297,9 @@ p, a, dd { overflow-wrap: anywhere; }
 .contact-links { display: flex; flex-wrap: wrap; gap: 8px 24px; min-width: 0; }
 .contact-links a { overflow-wrap: anywhere; }
 .hero-copy { max-width: 850px; }
-.hero-description { font-size: 1rem; }
+.hero-description { font-size: 1.0625rem; }
 .breadcrumb { flex-wrap: wrap; }
 .plate-controls { row-gap: 6px; }
-.system-connection { min-height: 52px; height: auto; padding-block: 12px; }
 .system-node, .persistence-node, .plate-controls button { overflow-wrap: anywhere; }
 
 /* The two application lanes share a single persistence region. */
@@ -349,15 +353,19 @@ p, a, dd { overflow-wrap: anywhere; }
 .architecture-lanes {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 38px;
+  grid-template-rows: repeat(5, auto);
+  column-gap: 38px;
 }
 
 .architecture-lane {
   position: relative;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 5;
 }
 
 .lane-audience {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: #c4d4c9;
   padding-bottom: 12px;
   text-align: center;
@@ -381,18 +389,19 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .system-node>span {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: #bfd1c5;
 }
 
 .system-node code {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
 }
 
 .system-connection {
   position: relative;
-  height: 52px;
+  min-height: 64px;
+  padding-block: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -412,7 +421,7 @@ p, a, dd { overflow-wrap: anywhere; }
   z-index: 1;
   background: var(--deep);
   padding: 4px 6px;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-align: center;
   font-family: var(--mono);
   color: #c6d6cc;
@@ -447,7 +456,7 @@ p, a, dd { overflow-wrap: anywhere; }
   top: 12px;
   left: 8px;
   color: #c6d6cc;
-  font-size: 0.625rem;
+  font-size: 0.8125rem;
   font-family: var(--mono);
 }
 
@@ -494,7 +503,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .persistence-node div>span {
   display: block;
-  font-size: 0.625rem;
+  font-size: 0.8125rem;
   color: #c4d4c9;
   margin-top: 4px;
 }
@@ -557,7 +566,8 @@ p, a, dd { overflow-wrap: anywhere; }
   border-bottom: 2px solid transparent;
   padding: 11px 10px;
   min-height: 44px;
-  font-size: 0.75rem;
+  min-width: 44px;
+  font-size: 0.8125rem;
 }
 
 .plate-controls button:hover {
@@ -572,7 +582,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .plate-annotation {
   color: #c4d4c9;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1.6;
   margin-top: 14px;
   min-height: 78px;
@@ -585,14 +595,14 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .plate-text summary {
   cursor: pointer;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   padding-block: 14px;
   color: #c4d4c9;
   min-height: 44px;
 }
 
 .plate-text p {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: #d5e0d8;
   padding-bottom: 14px;
 }
@@ -602,7 +612,7 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .section {
-  padding-block: 88px;
+  padding-block: 56px;
   border-top: 1px solid var(--line);
 }
 
@@ -611,7 +621,7 @@ p, a, dd { overflow-wrap: anywhere; }
   justify-content: space-between;
   gap: 24px;
   align-items: start;
-  margin-bottom: 50px;
+  margin-bottom: 32px;
 }
 
 .section-heading>p {
@@ -625,19 +635,19 @@ p, a, dd { overflow-wrap: anywhere; }
   grid-template-columns: 42px 1fr 1.05fr;
   gap: 26px;
   border-top: 1px solid var(--line);
-  padding-block: 38px;
+  padding-block: 32px;
 }
 
 .project-index {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   padding-top: 5px;
 }
 
 .project-category {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   margin-top: 12px;
 }
 
@@ -666,7 +676,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .project-status {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   margin-top: 20px;
 }
 
@@ -686,8 +696,8 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .project-entry-body>p {
-  font-size: 0.9375rem;
-  color: var(--muted);
+  font-size: 1rem;
+  color: var(--ink);
   max-width: 58ch;
 }
 
@@ -697,15 +707,14 @@ p, a, dd { overflow-wrap: anywhere; }
   flex-wrap: wrap;
   gap: 5px 0;
   color: var(--green);
-  font-size: 0.6875rem;
-  font-family: var(--mono);
+  font-size: 0.8125rem;
   line-height: 1.8;
 }
 
 .technology-line li:not(:last-child)::after {
   content: "/";
   margin-inline: 9px;
-  color: #78877e;
+  color: var(--muted);
 }
 
 .project-entry .technology-line {
@@ -717,9 +726,9 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .practice-section {
-  background: #e9ede6;
-  border-block: 1px solid #d6ddd2;
-  padding-block: 88px;
+  background: var(--surface);
+  border-block: 1px solid var(--line);
+  padding-block: 64px;
 }
 
 .practice-layout {
@@ -737,13 +746,13 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .practice-note {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   margin-top: 30px;
 }
 
 .practice-list article {
-  border-top: 1px solid #c5cfc1;
+  border-top: 1px solid var(--line);
   padding-block: 25px;
 }
 
@@ -768,14 +777,13 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .practice-list .practice-technologies {
-  font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: var(--green);
   margin-top: 14px;
 }
 
 .practice-evidence {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -791,7 +799,7 @@ p, a, dd { overflow-wrap: anywhere; }
   grid-template-columns: 0.8fr 1.2fr;
   gap: 9%;
   border-top: none;
-  padding-block: 110px;
+  padding-block: 72px;
 }
 
 .about-lead {
@@ -806,6 +814,8 @@ p, a, dd { overflow-wrap: anywhere; }
   font-size: 0.9375rem;
   max-width: 56ch;
 }
+
+.about-interests { margin-top: 20px; }
 
 .education-record {
   border-top: 1px solid var(--line);
@@ -868,7 +878,7 @@ p, a, dd { overflow-wrap: anywhere; }
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
@@ -888,7 +898,7 @@ p, a, dd { overflow-wrap: anywhere; }
   gap: 12px;
   align-items: center;
   flex-wrap: wrap;
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   margin-top: 32px;
 }
@@ -962,7 +972,7 @@ p, a, dd { overflow-wrap: anywhere; }
   grid-template-columns: 0.8fr 1.2fr;
   gap: 10%;
   align-items: center;
-  padding-block: 72px;
+  padding-block: 48px;
 }
 
 .case-architecture h2 {
@@ -977,7 +987,7 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .case-architecture .small-note {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .case-reading-layout {
@@ -997,7 +1007,7 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .case-index p {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   color: var(--muted);
   margin-bottom: 20px;
 }
@@ -1016,8 +1026,8 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .case-section {
-  padding-bottom: 64px;
-  margin-bottom: 44px;
+  padding-bottom: 40px;
+  margin-bottom: 36px;
   border-bottom: 1px solid var(--line);
   max-width: 750px;
 }
@@ -1034,9 +1044,9 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .case-section p {
-  color: var(--muted);
-  font-size: 1rem;
-  max-width: 70ch;
+  color: var(--ink);
+  font-size: 1.0625rem;
+  max-width: 68ch;
 }
 
 .case-section>p+p {
@@ -1056,7 +1066,7 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .case-items p {
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
 }
 
 .next-project {
@@ -1078,7 +1088,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .next-project-link>span {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   grid-column: 1 / -1;
 }
 
@@ -1098,7 +1108,7 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 .climate-overview {
-  background: #e7ede8;
+  background: var(--surface);
   padding: 42px;
   margin-block: 48px 64px;
 }
@@ -1127,7 +1137,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .climate-workflow li>span {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: var(--green);
 }
 
@@ -1143,7 +1153,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
 .workflow-caption {
   margin-top: 34px;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: var(--muted);
 }
 
@@ -1177,7 +1187,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
   .hero {
     gap: 32px;
-    padding-block: 56px;
+    padding-block: 40px;
   }
 
   .hero h1 {
@@ -1198,7 +1208,7 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .architecture-lanes {
-    gap: 26px;
+    column-gap: 26px;
   }
 
   .persistence-connection {
@@ -1283,7 +1293,7 @@ p, a, dd { overflow-wrap: anywhere; }
 
   .section,
   .practice-section {
-    padding-block: 64px;
+    padding-block: 48px;
   }
 
   .project-entry {
@@ -1392,6 +1402,7 @@ p, a, dd { overflow-wrap: anywhere; }
 }
 
 @media (max-width: 600px) {
+  body { font-size: 1rem; }
   .wrap {
     width: calc(100% - 40px);
   }
@@ -1433,7 +1444,7 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .hero {
-    padding-block: 42px 48px;
+    padding-block: 32px;
     gap: 34px;
   }
 
@@ -1447,14 +1458,14 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .hero-description {
-    font-size: 0.9375rem;
+    font-size: 1rem;
     margin-top: 15px;
   }
 
   .hero-actions {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 9px;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px 20px;
     margin-top: 24px;
   }
 
@@ -1463,7 +1474,7 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .architecture-lanes {
-    gap: 20px;
+    column-gap: 20px;
   }
 
   .plate-caption {
@@ -1475,7 +1486,7 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .system-node strong {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .system-node {
@@ -1484,15 +1495,15 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .system-node>span {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .lane-audience {
-    font-size: 0.6875rem;
+    font-size: 0.8125rem;
   }
 
   .system-connection>span {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     padding-inline: 2px;
   }
 
@@ -1515,7 +1526,7 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .plate-controls button {
-    font-size: 0.75rem;
+    font-size: 0.8125rem;
     padding-inline: 6px;
   }
 
@@ -1537,20 +1548,24 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .project-entry {
+    grid-template-columns: minmax(0, 1fr);
     gap: 16px;
     padding-block: 28px;
   }
+
+  .project-index { padding-top: 0; }
+  .project-entry-body { grid-column: 1; }
 
   .project-entry-title h3 {
     font-size: 1.5rem;
   }
 
   .project-entry-body>p {
-    font-size: 0.875rem;
+    font-size: 1rem;
   }
 
   .technology-line {
-    font-size: 0.625rem;
+    font-size: 0.8125rem;
   }
 
   .project-entry-title h3 .arrow {
@@ -1566,13 +1581,13 @@ p, a, dd { overflow-wrap: anywhere; }
   }
 
   .site-footer {
-    font-size: 0.625rem;
+    font-size: 0.8125rem;
     gap: 2px;
     padding-block: 20px;
   }
 
   .breadcrumb {
-    font-size: 0.625rem;
+    font-size: 0.8125rem;
     gap: 8px;
     margin-top: 20px;
   }
@@ -1585,6 +1600,8 @@ p, a, dd { overflow-wrap: anywhere; }
   .case-summary {
     font-size: 1rem;
   }
+
+  .case-section p { font-size: 1rem; }
 
   .case-facts {
     display: block;

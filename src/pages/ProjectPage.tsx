@@ -10,11 +10,11 @@ export default function ProjectPage() {
   const project = projects.find((item) => item.slug === slug && item.detail);
   if (!project) return <NotFoundPage />;
   const isVenue = project.slug === "venue-vendors";
-  const nextProject = projects.find(
-    (item) => item.detail && item.slug !== slug,
-  )!;
+  const isClimate = project.slug === "australian-climate-data-explorer";
+  const caseStudies = projects.filter((item) => item.detail);
+  const nextProject = caseStudies[(caseStudies.indexOf(project) + 1) % caseStudies.length];
   return (
-    <div className={`case-page ${isVenue ? "venue-case" : "climate-case"}`}>
+    <div className={`case-page ${project.slug}-case`}>
       <PageMeta title={project.title} description={project.summary} />
       <div className="wrap">
         <nav className="breadcrumb" aria-label="Breadcrumb">
@@ -78,7 +78,7 @@ export default function ProjectPage() {
             <div>
               <dt>Focus</dt>
               <dd>
-                {isVenue ? "Full-stack systems" : "Relational data & analysis"}
+                {project.focus ?? (isVenue ? "Full-stack systems" : "Relational data & analysis")}
               </dd>
             </div>
           </dl>
@@ -109,7 +109,7 @@ export default function ProjectPage() {
             </div>
             <ArchitecturePlate />
           </div>
-        ) : (
+        ) : isClimate ? (
           <section
             className="climate-overview"
             aria-labelledby="climate-overview-title"
@@ -136,7 +136,7 @@ export default function ProjectPage() {
               Filtering, similarity analysis and CSV export
             </p>
           </section>
-        )}
+        ) : null}
         <div className="case-reading-layout">
           <aside className="case-index">
             <nav aria-label="On this page">

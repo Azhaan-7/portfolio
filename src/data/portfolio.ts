@@ -18,12 +18,6 @@ export const navigation = [
 
 export const plannedProjects = [
   {
-    title: "AI-Assisted Career Platform",
-    status: "In design",
-    summary: "Planning evidence-backed job analysis and résumé tailoring for students. The design covers structured job requirements, matching against confirmed experience, explainable terminology analysis and user-reviewed résumé suggestions.",
-    stack: "Intended stack: Next.js / React / TypeScript · FastAPI · Supabase PostgreSQL / Auth / Storage",
-  },
-  {
     title: "Launchpad",
     status: "Planned",
     summary: "A planned GitHub-to-cloud deployment tool. The MVP would take a supported repository through test execution, Docker build, Azure Container Apps deployment, status reporting and a deployed URL. These deployment capabilities have not shipped.",
@@ -47,6 +41,7 @@ export interface Project {
   summary: string;
   technologies: string[];
   detail: boolean;
+  focus?: string;
   liveUrl?: string;
   repositoryUrl?: string;
   sections: CaseSection[];
@@ -238,12 +233,13 @@ export const projects: Project[] = [
   {
     slug: "community-eats",
     title: "CommunityEats",
-    category: "Backend / Full-stack system",
-    status: "In progress",
+    category: "Backend / Authentication & testing",
+    status: "Completed",
     teamSize: 6,
-    detail: false,
+    detail: true,
+    focus: "Backend engineering & collaboration",
     summary:
-      "An ongoing role-based meal marketplace built with Spring Boot, Spring Security, JDBC and Thymeleaf, with database migrations, automated testing and continuous integration.",
+      "A completed six-person RMIT university team project. I authored 28 merged pull requests across authentication, role-based authorization, backend services, automated testing and CI.",
     technologies: [
       "Java",
       "Spring Boot",
@@ -254,7 +250,69 @@ export const projects: Project[] = [
       "Flyway",
       "Maven",
       "GitHub Actions",
+      "Docker",
+      "MySQL",
     ],
+    sections: [
+      {
+        id: "contribution",
+        title: "Backend contributions within a team.",
+        paragraphs: [
+          "CommunityEats was developed collaboratively by a six-person RMIT university team. My contribution comprises 28 authored and merged pull requests; the application is the team's shared work.",
+          "My work covered backend services, authentication and authorization, testing, CI, shared layouts, meal images and documentation.",
+        ],
+      },
+      {
+        id: "implementation",
+        title: "Authentication, services and workflows.",
+        items: [
+          {
+            title: "Authentication and authorization",
+            text: "Implemented authentication, registration, logout and role-based authorization using Spring Boot and Spring Security.",
+          },
+          {
+            title: "Separation of concerns",
+            text: "Refactored backend service-layer code to separate responsibilities and improve maintainability.",
+          },
+          {
+            title: "Notifications and events",
+            text: "Contributed order notifications, event registration, cook notifications and event publishing functionality.",
+          },
+        ],
+      },
+      {
+        id: "validation",
+        title: "Testing and repeatable development.",
+        items: [
+          {
+            title: "Automated tests",
+            text: "Worked on automated testing, test isolation and Spring test context reuse.",
+          },
+          {
+            title: "Continuous integration and database setup",
+            text: "Contributed GitHub Actions CI and Docker MySQL setup for development and verification.",
+          },
+        ],
+      },
+      {
+        id: "evidence",
+        title: "Contribution record and project scope.",
+        paragraphs: [
+          "Selected merged pull requests: #174, #205, #206, #267, #322, #275, #286, #290, #309, #172, #217 and #280 in rmit-cosc2299/Group-P04-04. Repository access is restricted; no public source link is provided.",
+          "This case study describes the completed university project and my contributions. A separate personal copy, further UI improvements, deployment database configuration and public deployment remain future possibilities.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "ai-assisted-career-platform",
+    title: "AI-Assisted Career Platform",
+    category: "Full-stack / Foundations & authentication",
+    status: "In progress",
+    detail: false,
+    summary:
+      "Phase 1 completed the Next.js and FastAPI foundations, API communication and test infrastructure. Phase 2 added Supabase registration, login/logout, session handling, protected pages and backend token verification. Database-backed professional profiles, résumé processing, AI analysis and résumé tailoring are still planned.",
+    technologies: ["Next.js", "FastAPI", "Supabase Auth", "API communication", "Automated testing"],
     sections: [],
   },
 ];
@@ -279,8 +337,9 @@ export const practice: PracticeItem[] = [
   {
     title: "Backend & security",
     description:
-      "Ongoing development of database-backed authentication and role-aware application behaviour using Spring Boot, Spring Security, JDBC and Flyway.",
-    evidence: "CommunityEats · Ongoing",
+      "Contributed authentication, registration, logout, role-based authorization and service-layer refactoring to the completed CommunityEats team project.",
+    evidence: "CommunityEats",
+    slug: "community-eats",
     technologies: "Spring Boot · Spring Security · JDBC · Flyway",
   },
   {
@@ -294,8 +353,9 @@ export const practice: PracticeItem[] = [
   {
     title: "Testing & CI",
     description:
-      "Automated testing spans backend authentication and application layers in CommunityEats and frontend component behaviour in Venue Vendors, with GitHub Actions running the CommunityEats Maven test suite.",
-    evidence: "CommunityEats · Ongoing",
+      "Contributed automated testing, test isolation, Spring test context reuse, GitHub Actions CI and Docker MySQL setup in CommunityEats. Venue Vendors includes frontend component tests.",
+    evidence: "CommunityEats",
+    slug: "community-eats",
     technologies:
       "Spring Boot testing · Jest · React Testing Library · GitHub Actions",
   },

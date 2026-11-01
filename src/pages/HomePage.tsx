@@ -22,7 +22,6 @@ export default function HomePage() {
             I enjoy building applications and understanding how their interfaces,
             backend services and databases fit together.
           </p>
-          <p className="hero-description">I'm particularly interested in full-stack and backend development, with growing interests in AI integration and cloud/platform engineering. I'm seeking software engineering internship opportunities where I can contribute to real products and continue learning.</p>
           <div className="hero-actions">
             <Link className="button-primary" to="/#work">
               Explore projects <Arrow />
@@ -178,6 +177,12 @@ export default function HomePage() {
             team projects have given me opportunities to discuss design decisions,
             connect different parts of an application and learn alongside others.
           </p>
+          <p className="about-interests">
+            I'm particularly interested in full-stack and backend development, with growing
+            interests in AI integration and cloud/platform engineering. I'm seeking software
+            engineering internship opportunities where I can contribute to real products
+            and continue learning.
+          </p>
           <div className="education-record">
             <span className="education-institution">{site.university}</span>
             <h3>{site.degree}</h3>
@@ -198,7 +203,7 @@ export default function HomePage() {
           <p>Get in touch about software engineering internship opportunities.</p>
         </div>
         <div className="contact-links">
-          <a className="text-link" href={`mailto:${site.email}`}>{site.email}<Arrow /></a>
+          <a className="text-link" href={`mailto:${site.email}`}>Email<Arrow /></a>
           <a className="text-link" href={site.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)">GitHub <Arrow external /></a>
           <a className="text-link" href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)">LinkedIn <Arrow external /></a>
           <a className="text-link" href={site.resume} target="_blank" rel="noopener noreferrer" aria-label="Résumé (PDF, opens in a new tab)">Résumé <Arrow external /></a>
